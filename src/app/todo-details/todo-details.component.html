@@ -1,0 +1,78 @@
+<div class="details-container">
+  <div *ngIf="loading" class="loading">
+    <p>Loading...</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="error">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Error</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Failed to load task details. Please try again.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Back to Tasks
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <mat-card *ngIf="todo && !loading" class="todo-card">
+    <mat-card-header>
+      <mat-card-title>Task Details</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="detail-row">
+        <span class="label">Task ID:</span>
+        <span class="value">{{ todo.id }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Description:</span>
+        <span class="value">{{ todo.todo }}</span>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">Status:</span>
+        <mat-chip-set>
+          <mat-chip [class]="todo.completed ? 'completed' : 'pending'">
+            {{ todo.completed ? "Completed" : "Pending" }}
+          </mat-chip>
+        </mat-chip-set>
+      </div>
+
+      <div class="detail-row">
+        <span class="label">User ID:</span>
+        <span class="value">{{ todo.userId }}</span>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Tasks
+      </button>
+      <button
+        mat-raised-button
+        [color]="todo.completed ? 'warn' : 'primary'"
+        (click)="toggleComplete()"
+      >
+        <mat-icon>{{ todo.completed ? "close" : "check" }}</mat-icon>
+        {{ todo.completed ? "Mark as Pending" : "Mark as Completed" }}
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deleteTodo()"
+        [disabled]="deleting"
+      >
+        <mat-icon>delete</mat-icon>
+        {{ deleting ? "Deleting..." : "Delete Task" }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

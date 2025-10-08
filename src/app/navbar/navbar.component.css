@@ -1,0 +1,147 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+}
+
+.navbar-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.company-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 12px;
+}
+
+.company-section:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.company-icon {
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+  color: white;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.company-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.welcome-text {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.user-menu-button {
+  color: white;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+}
+
+.user-menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.login-section button {
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.login-section button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .welcome-text {
+    display: none;
+  }
+
+  .company-name {
+    font-size: 18px;
+  }
+
+  .navbar-content {
+    padding: 0 12px;
+  }
+
+  .company-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .company-section {
+    padding: 6px 12px;
+  }
+
+  .user-section {
+    gap: 10px;
+  }
+
+  .login-section button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-name {
+    font-size: 16px;
+  }
+
+  .company-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .company-section {
+    padding: 4px 8px;
+    gap: 8px;
+  }
+
+  .navbar-content {
+    padding: 0 8px;
+  }
+
+  .login-section button {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}

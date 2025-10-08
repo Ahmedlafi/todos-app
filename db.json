@@ -1,0 +1,94 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "todo": "Do something nice for someone I care about",
+      "completed": true,
+      "userId": 26
+    },
+    {
+      "id": "2",
+      "todo": "Memorize the fifty states and their capitals",
+      "completed": false,
+      "userId": 26
+    },
+    {
+      "id": "3",
+      "todo": "Watch a classic movie",
+      "completed": true,
+      "userId": 26
+    },
+    {
+      "id": "4",
+      "todo": "Contribute code or a monetary donation to an open-source software project",
+      "completed": true,
+      "userId": 26
+    },
+    {
+      "id": "5",
+      "todo": "Solve a Rubik's cube",
+      "completed": true,
+      "userId": 26
+    },
+    {
+      "id": "6",
+      "todo": "Bake pastries for me and neighbor",
+      "completed": true,
+      "userId": 26
+    },
+    {
+      "id": "7",
+      "todo": "Go see a Broadway production",
+      "completed": false,
+      "userId": 26
+    },
+    {
+      "id": "8",
+      "todo": "Write a thank you letter to an influential person in my life",
+      "completed": true,
+      "userId": 26
+    },
+    {
+      "id": "9",
+      "todo": "Invite some friends over for a game night",
+      "completed": false,
+      "userId": 26
+    },
+    {
+      "id": "10",
+      "todo": "Have a photo session with some friends",
+      "completed": false,
+      "userId": 26
+    },
+    {
+      "id": "11",
+      "todo": "Go to a drive-in theater",
+      "completed": false,
+      "userId": 26
+    },
+    {
+      "id": "12",
+      "todo": "Host a barbecue and invite some friends",
+      "completed": false,
+      "userId": 26
+    },
+    {
+      "id": "13",
+      "todo": "Go on a road trip with some friends",
+      "completed": false,
+      "userId": 26
+    },
+    {
+      "id": "14",
+      "todo": "Start a book I've never gotten around to reading",
+      "completed": true,
+      "userId": 26
+    },
+    {
+      "id": 15,
+      "todo": "ggg",
+      "completed": false,
+      "userId": 26
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+.dialog-container {
+  padding: 10px;
+}
+
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.dialog-icon {
+  font-size: 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.dialog-icon.error {
+  color: #f44336;
+}
+
+.dialog-icon.success {
+  color: #4caf50;
+}
+
+.dialog-icon.warning {
+  color: #ff9800;
+}
+
+.dialog-icon.info {
+  color: #2196f3;
+}
+
+h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+mat-dialog-content {
+  padding: 20px 0;
+  color: #5a6c7d;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+mat-dialog-actions {
+  padding: 20px 0 10px 0;
+}
+
+.ok-button {
+  font-weight: 600;
+  min-width: 100px;
+}
+
+@media (max-width: 480px) {
+  .dialog-container {
+    padding: 5px;
+  }
+
+  .dialog-header {
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .dialog-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  mat-dialog-content {
+    padding: 15px 0;
+    font-size: 14px;
+  }
+
+  mat-dialog-actions {
+    padding: 15px 0 8px 0;
+  }
+
+  .ok-button {
+    min-width: 80px;
+    font-size: 14px;
+  }
+}

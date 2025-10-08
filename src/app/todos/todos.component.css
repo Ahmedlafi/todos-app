@@ -1,0 +1,663 @@
+.todos-container {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 40px 40px 40px;
+  gap: 20px;
+}
+
+mat-label {
+  color: #ffffff;
+}
+.column {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.column:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.column h2 {
+  margin: 0 0 15px 0;
+  color: #fcfcfc;
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.drag-instruction {
+  font-size: 12px;
+  color: #fdfdfd;
+  margin: 0 0 20px 0;
+  font-style: italic;
+  background: rgba(102, 126, 234, 0.1);
+  padding: 10px 15px;
+  border-radius: 10px;
+  border-left: 4px solid #667eea;
+  text-align: center;
+  backdrop-filter: blur(5px);
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+mat-card {
+  padding: 20px;
+  cursor: grab;
+  transition: all 0.3s ease;
+  user-select: none;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-height: 60px;
+}
+
+mat-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+mat-card:active {
+  cursor: grabbing;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 20px;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.3;
+  background: rgba(102, 126, 234, 0.1);
+  border: 2px dashed #667eea;
+  border-radius: 15px;
+  min-height: 80px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.task-list.cdk-drop-list-dragging .mat-card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.task-list.cdk-drop-list-receiving {
+  background-color: rgba(102, 126, 234, 0.1);
+  border: 2px dashed #667eea;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+}
+
+.cdk-drag-handle {
+  cursor: grab;
+}
+
+.cdk-drag-handle:active {
+  cursor: grabbing;
+}
+
+.done {
+  background: rgba(76, 175, 80, 0.1) !important;
+  border-color: rgba(76, 175, 80, 0.3) !important;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.drag-handle {
+  color: #fefeff;
+  cursor: grab;
+  margin-right: 10px;
+  flex-shrink: 0;
+  font-size: 20px;
+  transition: all 0.2s ease;
+}
+
+.drag-handle:hover {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+}
+
+.task-text {
+  flex: 1;
+  word-break: break-word;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.delete-btn {
+  flex-shrink: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+  min-width: 40px;
+  min-height: 40px;
+}
+
+mat-card:hover .delete-btn {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.delete-btn:hover {
+  transform: scale(1.2);
+}
+
+.delete-btn mat-icon {
+  font-size: 20px;
+}
+
+.add-todo-section {
+  margin-bottom: 30px;
+  padding: 20px 30px;
+}
+
+.add-todo-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.add-todo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.add-todo-card mat-card-content {
+  padding: 20px 25px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.add-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 45px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.add-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.status-toggle {
+  margin: 15px 0;
+  padding: 12px 15px;
+  background: rgba(102, 126, 234, 0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(102, 126, 234, 0.2);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.status-toggle:hover {
+  background: rgba(102, 126, 234, 0.12);
+  border-color: rgba(102, 126, 234, 0.3);
+}
+
+.status-toggle-control {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.toggle-label {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.add-todo-card .mat-mdc-form-field {
+  color: #ffffff !important;
+}
+
+.add-todo-card .mat-mdc-form-field .mat-mdc-text-field-wrapper {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px;
+}
+
+.add-todo-card .mat-mdc-form-field .mat-mdc-form-field-focus-overlay {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+.add-todo-card .mat-mdc-input-element {
+  color: #ffffff !important;
+}
+
+.add-todo-card .mat-mdc-input-element::placeholder {
+  color: #ffffff !important;
+  opacity: 0.7;
+}
+
+.add-todo-card .mat-mdc-form-field-label {
+  color: #ffffff !important;
+}
+
+.add-todo-card .mat-mdc-form-field-label.mat-mdc-floating-label {
+  color: #ffffff !important;
+}
+
+.add-todo-card
+  .mat-mdc-form-field-label.mat-mdc-floating-label.mat-mdc-floating-label-float-above {
+  color: #ffffff !important;
+}
+
+.add-todo-card .mat-mdc-form-field .mdc-notched-outline__leading,
+.add-todo-card .mat-mdc-form-field .mdc-notched-outline__notch,
+.add-todo-card .mat-mdc-form-field .mdc-notched-outline__trailing {
+  border: none !important;
+}
+
+.add-todo-card .mat-mdc-form-field .mat-mdc-form-field-outline {
+  display: none !important;
+}
+
+.add-todo-card .mat-mdc-form-field .mat-mdc-form-field-outline-thick {
+  display: none !important;
+}
+
+.add-todo-card .mat-mdc-form-field .mat-mdc-form-field-error {
+  color: #ff6b6b !important;
+}
+
+.add-todo-card .mat-mdc-form-field .mat-mdc-form-field-hint {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.clickable-card {
+  cursor: pointer;
+}
+
+.clickable-card:active {
+  cursor: grabbing;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  mat-card:hover {
+    transform: none;
+  }
+
+  .delete-btn {
+    opacity: 1;
+  }
+
+  mat-card:active {
+    transform: scale(0.98);
+  }
+}
+
+@media (max-width: 1200px) {
+  .todos-container {
+    padding: 20px 30px 40px 30px;
+    gap: 18px;
+  }
+
+  .column {
+    padding: 22px;
+  }
+
+  .column h2 {
+    font-size: 26px;
+  }
+
+  .add-todo-section {
+    padding: 20px 30px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .todos-container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .column {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 0;
+    padding: 25px;
+  }
+
+  .column:hover {
+    transform: none;
+  }
+
+  .add-todo-section {
+    padding: 20px 15px;
+    margin-bottom: 25px;
+  }
+
+  .add-todo-card {
+    max-width: 100%;
+  }
+
+  .column h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .todos-container {
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .column {
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .column h2 {
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .drag-instruction {
+    font-size: 11px;
+    padding: 8px 12px;
+    margin-bottom: 18px;
+  }
+
+  mat-card {
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .task-content {
+    gap: 10px;
+  }
+
+  .task-text {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .drag-handle {
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  .delete-btn {
+    opacity: 1;
+  }
+
+  .add-todo-section {
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .add-todo-card {
+    border-radius: 15px;
+  }
+
+  .add-todo-card mat-card-content {
+    padding: 15px 20px;
+  }
+
+  .add-button {
+    height: 44px;
+    font-size: 14px;
+  }
+
+  .toggle-label {
+    font-size: 14px;
+  }
+
+  .status-toggle {
+    margin: 12px 0;
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .todos-container {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .column {
+    padding: 18px;
+  }
+
+  .column h2 {
+    font-size: 20px;
+  }
+
+  mat-card {
+    padding: 14px;
+  }
+
+  .task-text {
+    font-size: 13.5px;
+  }
+
+  .add-todo-section {
+    padding: 12px;
+  }
+
+  .add-todo-card mat-card-content {
+    padding: 14px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .todos-container {
+    padding: 10px 8px;
+    gap: 12px;
+  }
+
+  .column {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .column h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .drag-instruction {
+    font-size: 10px;
+    padding: 8px 10px;
+    margin-bottom: 15px;
+  }
+
+  .task-list {
+    gap: 12px;
+  }
+
+  mat-card {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .task-content {
+    gap: 8px;
+  }
+
+  .task-text {
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  .drag-handle {
+    font-size: 16px;
+    margin-right: 6px;
+  }
+
+  .delete-btn {
+    opacity: 1;
+  }
+
+  .add-todo-section {
+    padding: 10px 8px;
+    margin-bottom: 15px;
+  }
+
+  .add-todo-card {
+    border-radius: 12px;
+  }
+
+  .add-todo-card mat-card-header {
+    padding: 0;
+  }
+
+  .add-todo-card mat-card-title {
+    font-size: 18px;
+  }
+
+  .add-todo-card mat-card-content {
+    padding: 12px 15px;
+  }
+
+  .add-button {
+    height: 40px;
+    font-size: 13px;
+    gap: 6px;
+  }
+
+  .add-button mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+
+  .status-toggle {
+    padding: 10px 12px;
+    margin: 10px 0;
+  }
+
+  .toggle-label {
+    font-size: 13px;
+  }
+
+  .full-width {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .todos-container {
+    padding: 8px 6px;
+    gap: 10px;
+  }
+
+  .column {
+    padding: 12px;
+  }
+
+  .column h2 {
+    font-size: 17px;
+  }
+
+  .drag-instruction {
+    font-size: 9px;
+    padding: 6px 8px;
+  }
+
+  mat-card {
+    padding: 10px;
+  }
+
+  .task-text {
+    font-size: 12px;
+  }
+
+  .drag-handle {
+    font-size: 14px;
+    margin-right: 4px;
+  }
+
+  .delete-btn mat-icon {
+    font-size: 18px;
+  }
+
+  .add-todo-section {
+    padding: 8px 6px;
+  }
+
+  .add-todo-card mat-card-content {
+    padding: 10px 12px;
+  }
+
+  .add-button {
+    height: 38px;
+    font-size: 12px;
+  }
+
+  .toggle-label {
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .todos-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 50px 50px 50px;
+  }
+
+  .add-todo-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 50px 30px 50px;
+  }
+
+  .add-todo-card {
+    max-width: 700px;
+  }
+}
