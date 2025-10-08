@@ -5,6 +5,7 @@
 .dialog-header {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 15px;
   margin-bottom: 10px;
 }
@@ -15,9 +16,7 @@
   height: 40px;
 }
 
-.dialog-icon.warning {
-  color: #ff9800;
-}
+
 
 h2 {
   margin: 0;

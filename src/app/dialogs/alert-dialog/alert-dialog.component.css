@@ -1,5 +1,6 @@
 .dialog-container {
   padding: 10px;
+
 }
 
 .dialog-header {
@@ -15,21 +16,7 @@
   height: 40px;
 }
 
-.dialog-icon.error {
-  color: #f44336;
-}
 
-.dialog-icon.success {
-  color: #4caf50;
-}
-
-.dialog-icon.warning {
-  color: #ff9800;
-}
-
-.dialog-icon.info {
-  color: #2196f3;
-}
 
 h2 {
   margin: 0;

@@ -67,7 +67,7 @@ export class TodosComponent implements OnInit {
   }
 
   fetchTodos() {
-    this.todosService.getTodos(50).subscribe({
+    this.todosService.getTodos().subscribe({
       next: (res) => {
         this.todos = res.todos.filter((t) => !t.completed);
         this.completed = res.todos.filter((t) => t.completed);
@@ -138,11 +138,11 @@ export class TodosComponent implements OnInit {
     }
   }
 
-  viewDetails(id: number, event: Event) {
+  viewDetails(id: string, event: Event) {
     if (event.type === 'click') {
       event.stopPropagation();
       event.preventDefault();
-      this.router.navigate(['/todos', Number(id)]);
+      this.router.navigate(['/todos', id]);
     }
   }
 
@@ -153,12 +153,7 @@ export class TodosComponent implements OnInit {
     const todoText = this.addTodoForm.get('todo')?.value;
     const isCompleted = this.addTodoForm.get('completed')?.value;
 
-    const allTodos = [...this.todos, ...this.completed];
-    const maxId =
-      allTodos.length > 0 ? Math.max(...allTodos.map((t) => t.id)) : 0;
-    const nextId = maxId + 1;
-
-    this.todosService.addTodo(todoText, 26, nextId).subscribe({
+    this.todosService.addTodo(todoText, 26).subscribe({
       next: (newTodo) => {
         newTodo.completed = isCompleted;
 
@@ -198,7 +193,7 @@ export class TodosComponent implements OnInit {
     });
   }
 
-  deleteTodo(id: number, event: Event) {
+  deleteTodo(id: string, event: Event) {
     event.stopPropagation();
     event.preventDefault();
 
@@ -214,10 +209,19 @@ export class TodosComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.todosService.deleteTodo(Number(id)).subscribe({
+        this.todosService.deleteTodo(id).subscribe({
           next: () => {
-            this.todos = this.todos.filter((t) => t.id !== Number(id));
-            this.completed = this.completed.filter((t) => t.id !== Number(id));
+            this.todos = this.todos.filter((todo) => todo.id !== id);
+            this.completed = this.completed.filter((todo) => todo.id !== id);
+
+            this.dialog.open(AlertDialogComponent, {
+              data: {
+                title: 'Success',
+                message: 'Task deleted successfully!',
+                type: 'success',
+                buttonText: 'OK',
+              },
+            });
           },
           error: (err) => {
             this.dialog.open(AlertDialogComponent, {

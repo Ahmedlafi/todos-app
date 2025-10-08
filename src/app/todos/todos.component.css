@@ -26,11 +26,11 @@ mat-label {
 
 .column h2 {
   margin: 0 0 15px 0;
-  color: #fcfcfc;
+  color: #ffffff;
   font-size: 28px;
   font-weight: 700;
   text-align: center;
-  background: linear-gradient(45deg, #667eea, #764ba2);
+  background: #ffffff;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -53,7 +53,7 @@ mat-label {
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 mat-card {
@@ -211,7 +211,6 @@ mat-card:hover .delete-btn {
 
 .full-width {
   width: 100%;
-  margin-bottom: 15px;
 }
 
 .add-button {
@@ -236,16 +235,14 @@ mat-card:hover .delete-btn {
 .status-toggle {
   margin: 15px 0;
   padding: 12px 15px;
-  background: rgba(102, 126, 234, 0.08);
+  background: #1a1f33;
   border-radius: 10px;
-  border: 1px solid rgba(102, 126, 234, 0.2);
-  backdrop-filter: blur(5px);
   transition: all 0.3s ease;
 }
 
 .status-toggle:hover {
-  background: rgba(102, 126, 234, 0.12);
-  border-color: rgba(102, 126, 234, 0.3);
+  background: #1f2640;
+  border-color: #3a4a8a;
 }
 
 .status-toggle-control {

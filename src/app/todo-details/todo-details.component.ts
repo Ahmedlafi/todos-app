@@ -39,11 +39,11 @@ export class TodoDetailsComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.fetchTodoDetails(Number(id));
+      this.fetchTodoDetails(id);
     }
   }
 
-  fetchTodoDetails(id: number) {
+  fetchTodoDetails(id: string) {
     this.todosService.getTodoById(id).subscribe({
       next: (todo) => {
         this.todo = todo;

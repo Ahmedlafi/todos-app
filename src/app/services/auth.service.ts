@@ -1,30 +1,44 @@
 import { Injectable } from '@angular/core';
-import { from } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+interface AuthResponse {
+  accessToken: string;
+  refreshToken: string;
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  token: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'https://dummyjson.com/auth/login';
+  private apiUrl = environment.authApiUrl;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   login(username: string, password: string, expiresInMins: number = 30) {
-    return from(
-      fetch(this.apiUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username,
-          password,
-          expiresInMins,
-        }),
-      }).then((res) => res.json())
+    return this.http.post<AuthResponse>(
+      this.apiUrl,
+      {
+        username,
+        password,
+        expiresInMins,
+      },
+      {
+        headers: { 'Content-Type': 'application/json' }
+      }
     ).pipe(
       tap((response) => {
-        localStorage.setItem('accessToken', response.accessToken);
-        localStorage.setItem('refreshToken', response.refreshToken);
+        localStorage.setItem('accessToken', response.token);
+        localStorage.setItem('refreshToken', response.token);
         localStorage.setItem('user', JSON.stringify(response));
       })
     );
@@ -32,6 +46,10 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('accessToken');
   }
 
   isLoggedIn(): boolean {

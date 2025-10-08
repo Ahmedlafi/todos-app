@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { from, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+import { map } from 'rxjs/operators';
 
 export interface Todo {
-  id: number;
+  id: string
   todo: string;
   completed: boolean;
   userId: number;
@@ -20,104 +22,76 @@ export interface TodosResponse {
   providedIn: 'root',
 })
 export class TodosService {
-  private apiUrl = 'http://localhost:3000/todos';
+  private apiUrl = environment.todosApiUrl;
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getTodos(limit = 10): Observable<TodosResponse> {
-    return from(
-      fetch(`${this.apiUrl}?_limit=${limit}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then((res) => res.json())
-        .then((todos) => ({
-          todos: todos.map((todo: any) => ({
-            ...todo,
-            id: Number(todo.id),
-          })),
-          total: todos.length,
-          skip: 0,
-          limit: limit,
-        }))
-    );
-  }
-
-  getTodoById(id: number): Observable<Todo> {
-    return from(
-      fetch(`${this.apiUrl}/${Number(id)}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.json();
-        })
-        .then((todo: any) => ({
+  getTodos(): Observable<TodosResponse> {
+    return this.http.get<Todo[]>(this.apiUrl).pipe(
+      map(todos => ({
+        todos: todos.map(todo => ({
           ...todo,
-          id: Number(todo.id),
-        }))
+          id: String(todo.id)
+        })),
+        total: todos.length,
+        skip: 0,
+        limit: 10,
+      }))
     );
   }
 
-  updateTodo(id: number, completed: boolean): Observable<Todo> {
-    return from(
-      fetch(`${this.apiUrl}/${Number(id)}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ completed }),
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.json();
-        })
-        .then((todo: any) => ({
-          ...todo,
-          id: Number(todo.id),
-        }))
+  getTodoById(id: string): Observable<Todo> {
+    return this.http.get<Todo>(`${this.apiUrl}/${id}`).pipe(
+      map(todo => ({
+        ...todo,
+        id: String(todo.id)
+      }))
     );
   }
 
-  addTodo(todo: string, userId: number = 1, nextId?: number): Observable<Todo> {
-    return from(
-      fetch(`${this.apiUrl}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          id: Number(nextId),
-          todo,
-          completed: false,
-          userId,
-        }),
-      })
-        .then((res) => res.json())
-        .then((newTodo: any) => ({
-          ...newTodo,
-          id: Number(newTodo.id),
-        }))
+  updateTodo(id: string, completed: boolean): Observable<Todo> {
+    return this.http.patch<Todo>(
+      `${this.apiUrl}/${id}`,
+      { completed },
+      { headers: { 'Content-Type': 'application/json' } }
+    ).pipe(
+      map(todo => ({
+        ...todo,
+        id: String(todo.id)
+      }))
     );
   }
 
-  deleteTodo(id: number): Observable<Todo> {
-    return from(
-      fetch(`${this.apiUrl}/${Number(id)}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-          }
-          return res.json();
-        })
-        .then((todo: any) => ({
-          ...todo,
-          id: Number(todo.id),
-        }))
+  addTodo(todo: string, userId: number = 1): Observable<Todo> {
+    const uniqueId = `todo_${Date.now()}_${Math.random().toString(36)}`;
+
+    const newTodo: Todo = {
+      id: uniqueId,
+      todo,
+      completed: false,
+      userId,
+    };
+
+    return this.http.post<Todo>(
+      this.apiUrl,
+      newTodo,
+      { headers: { 'Content-Type': 'application/json' } }
+    ).pipe(
+      map(createdTodo => ({
+        ...createdTodo,
+        id: createdTodo.id || uniqueId
+      }))
+    );
+  }
+
+  deleteTodo(id: string): Observable<Todo> {
+    return this.http.delete<Todo>(`${this.apiUrl}/${id}`, {
+      headers: { 'Content-Type': 'application/json' }
+    }).pipe(
+      map(todo => ({
+        ...todo,
+        id: String(todo.id)
+      }))
     );
   }
 }
