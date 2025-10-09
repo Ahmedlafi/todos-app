@@ -21,9 +21,10 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { TodosService, Todo } from '../services/todos.service';
-import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
-import { AlertDialogComponent } from '../dialogs/alert-dialog/alert-dialog.component';
+import { TodosService, Todo } from '../../services/todos.service';
+import { ConfirmDialogComponent } from '../../components/dialogs/confirm-dialog/confirm-dialog.component';
+import { AlertDialogComponent } from '../../components/dialogs/alert-dialog/alert-dialog.component';
+import { EditTodoDialogComponent } from '../../components/dialogs/edit-todo-dialog/edit-todo-dialog.component';
 
 @Component({
   selector: 'app-todos',
@@ -142,7 +143,48 @@ export class TodosComponent implements OnInit {
     if (event.type === 'click') {
       event.stopPropagation();
       event.preventDefault();
-      this.router.navigate(['/todos', id]);
+
+      const todo = [...this.todos, ...this.completed].find((t) => t.id === id);
+      if (!todo) return;
+
+      const dialogRef = this.dialog.open(EditTodoDialogComponent, {
+        data: { todo },
+        width: '600px',
+        maxWidth: '90vw',
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          if (result.action === 'updated') {
+            const updatedTodo = result.todo;
+
+            this.todos = this.todos.filter((t) => t.id !== updatedTodo.id);
+            this.completed = this.completed.filter(
+              (t) => t.id !== updatedTodo.id
+            );
+
+            if (updatedTodo.completed) {
+              this.completed.push(updatedTodo);
+            } else {
+              this.todos.push(updatedTodo);
+            }
+          } else if (result.action === 'deleted') {
+            this.todos = this.todos.filter((t) => t.id !== result.todoId);
+            this.completed = this.completed.filter(
+              (t) => t.id !== result.todoId
+            );
+
+            this.dialog.open(AlertDialogComponent, {
+              data: {
+                title: 'Success',
+                message: 'Task deleted successfully!',
+                type: 'success',
+                buttonText: 'OK',
+              },
+            });
+          }
+        }
+      });
     }
   }
 

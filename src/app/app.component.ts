@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FooterComponent } from './footer/footer.component';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  standalone: true
+  standalone: true,
 })
 export class AppComponent implements OnInit {
   title = 'todos-app';
@@ -18,10 +18,10 @@ export class AppComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: any) => {
-      this.isLoginPage = event.url === '/login' || event.url === '/';
-    });
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.isLoginPage = event.url === '/login' || event.url === '/';
+      });
   }
 }

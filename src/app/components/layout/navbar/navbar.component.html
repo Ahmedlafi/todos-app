@@ -1,12 +1,10 @@
 <mat-toolbar color="primary" class="navbar">
   <div class="navbar-content">
-    <!-- Left side - Company name -->
     <div class="company-section" (click)="goToTodos()">
       <mat-icon class="company-icon">task_alt</mat-icon>
       <span class="company-name">Todos App</span>
     </div>
 
-    <!-- Right side - User info and logout -->
     <div class="user-section" *ngIf="user">
       <span class="welcome-text">Welcome, {{ userName }}</span>
       <button
@@ -26,7 +24,6 @@
       </mat-menu>
     </div>
 
-    <!-- Show login button if not authenticated -->
     <div class="login-section" *ngIf="!user">
       <button mat-button (click)="goToTodos()">
         <mat-icon>login</mat-icon>

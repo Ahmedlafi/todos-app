@@ -1,5 +1,7 @@
 .dialog-container {
   padding: 10px;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .dialog-header {
@@ -14,20 +16,19 @@
   font-size: 40px;
   width: 40px;
   height: 40px;
+  color: #ffffff;
 }
-
-
 
 h2 {
   margin: 0;
   font-size: 24px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 mat-dialog-content {
   padding: 20px 0;
-  color: #5a6c7d;
+  color: #ffffff;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -38,12 +39,12 @@ mat-dialog-actions {
 }
 
 .cancel-button {
-  color: #5a6c7d;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .cancel-button:hover {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .confirm-button {

@@ -1,0 +1,167 @@
+.dialog-container {
+  padding: 10px;
+  min-width: 500px;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+h2[mat-dialog-title] {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 20px 0;
+}
+
+mat-dialog-content {
+  padding: 20px 0;
+  color: #ffffff;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.detail-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 700;
+  color: #cccccc;
+  min-width: 150px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.value {
+  flex: 1;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+mat-chip-set {
+  margin: 0;
+}
+
+mat-chip.completed {
+  background: #4caf50 !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+}
+
+mat-chip.pending {
+  background: #ff9800 !important;
+  color: white !important;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+}
+
+mat-dialog-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding: 20px 0 0 0;
+  flex-wrap: wrap;
+}
+
+mat-dialog-actions button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+mat-dialog-actions button:hover:not([disabled]) {
+  transform: translateY(-2px);
+}
+
+mat-dialog-actions button:disabled {
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .dialog-container {
+    min-width: 0;
+    width: 100%;
+    max-width: 90vw;
+  }
+
+  h2[mat-dialog-title] {
+    font-size: 24px;
+  }
+
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 0;
+  }
+
+  .label {
+    min-width: auto;
+    font-size: 14px;
+  }
+
+  .value {
+    font-size: 14px;
+  }
+
+  mat-dialog-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  mat-dialog-actions button {
+    width: 100%;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dialog-container {
+    padding: 5px;
+  }
+
+  h2[mat-dialog-title] {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  .detail-row {
+    padding: 10px 0;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .value {
+    font-size: 13px;
+  }
+
+  mat-chip.completed,
+  mat-chip.pending {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

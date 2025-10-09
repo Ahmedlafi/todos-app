@@ -1,0 +1,60 @@
+<div class="dialog-container">
+  <h2 mat-dialog-title>Task Details</h2>
+
+  <mat-dialog-content>
+    <div class="detail-row">
+      <span class="label">Task ID:</span>
+      <span class="value">{{ todo.id }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="label">Description:</span>
+      <span class="value">{{ todo.todo }}</span>
+    </div>
+
+    <div class="detail-row">
+      <span class="label">Status:</span>
+      <mat-chip-set>
+        <mat-chip [class]="todo.completed ? 'completed' : 'pending'">
+          {{ todo.completed ? "Completed" : "Pending" }}
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+
+    <div class="detail-row">
+      <span class="label">User ID:</span>
+      <span class="value">{{ todo.userId }}</span>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="close()">
+      <mat-icon>close</mat-icon>
+      Close
+    </button>
+    <button
+      mat-raised-button
+      [color]="todo.completed ? 'warn' : 'primary'"
+      (click)="toggleComplete()"
+      [disabled]="loading"
+    >
+      <mat-icon>{{ todo.completed ? "close" : "check" }}</mat-icon>
+      {{
+        loading
+          ? "Updating..."
+          : todo.completed
+          ? "Mark as Pending"
+          : "Mark as Completed"
+      }}
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      (click)="deleteTodo()"
+      [disabled]="deleting"
+    >
+      <mat-icon>delete</mat-icon>
+      {{ deleting ? "Deleting..." : "Delete Task" }}
+    </button>
+  </mat-dialog-actions>
+</div>

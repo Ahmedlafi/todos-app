@@ -1,6 +1,7 @@
 .dialog-container {
   padding: 10px;
-
+  background-color: #000000;
+  color: #ffffff;
 }
 
 .dialog-header {
@@ -14,20 +15,19 @@
   font-size: 40px;
   width: 40px;
   height: 40px;
+  color: #ffffff;
 }
-
-
 
 h2 {
   margin: 0;
   font-size: 24px;
   font-weight: 600;
-  color: #2c3e50;
+  color: #ffffff;
 }
 
 mat-dialog-content {
   padding: 20px 0;
-  color: #5a6c7d;
+  color: #ffffff;
   font-size: 16px;
   line-height: 1.6;
 }
