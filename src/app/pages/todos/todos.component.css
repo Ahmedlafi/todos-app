@@ -54,6 +54,28 @@ mat-label {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-height: 200px;
+  padding: 15px;
+  border: 2px dashed transparent;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.task-list:empty {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.task-list:empty::before {
+  content: "Drop tasks here";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
 }
 
 mat-card {
@@ -107,11 +129,18 @@ mat-card:active {
 }
 
 .task-list.cdk-drop-list-receiving {
-  background-color: rgba(102, 126, 234, 0.1);
-  border: 2px dashed #667eea;
+  background-color: rgba(102, 126, 234, 0.15);
+  border: 2px dashed #667eea !important;
   border-radius: 15px;
   transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+  min-height: 200px;
+}
+
+.task-list.cdk-drop-list-receiving::before {
+  content: "Drop here" !important;
+  color: #667eea !important;
+  font-weight: 700 !important;
 }
 
 .cdk-drag-handle {
@@ -409,6 +438,15 @@ mat-card:hover .delete-btn {
     margin-bottom: 18px;
   }
 
+  .task-list {
+    min-height: 150px;
+    padding: 12px;
+  }
+
+  .task-list:empty::before {
+    font-size: 14px;
+  }
+
   mat-card {
     padding: 15px;
     border-radius: 12px;
@@ -515,6 +553,12 @@ mat-card:hover .delete-btn {
 
   .task-list {
     gap: 12px;
+    min-height: 120px;
+    padding: 10px;
+  }
+
+  .task-list:empty::before {
+    font-size: 13px;
   }
 
   mat-card {
