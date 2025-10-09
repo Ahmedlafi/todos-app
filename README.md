@@ -14,6 +14,14 @@ To start a json-server, run:
 ```bash
 npm run json-server
 ```
+username 
+```bash
+emilys
+```
+password 
+```bash
+emilyspass
+```
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ## Code scaffolding
